@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "337044241175",
+    "firebase_url": "https://toy-cantando-ec973.firebaseio.com",
+    "project_id": "toy-cantando-ec973",
+    "storage_bucket": "toy-cantando-ec973.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337044241175:android:6e905e1308c8dcc2",
+        "android_client_info": {
+          "package_name": "cancionesinfantiles.toycantando"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337044241175-c5vn38n524vntgp14avokntru0kbhtjp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoDR2sZMa9Vn3FNeOpLS3lA5Yr7jBJzZ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

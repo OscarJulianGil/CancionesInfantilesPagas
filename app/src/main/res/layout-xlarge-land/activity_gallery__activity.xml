@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo">
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/progressBar1_layout_marginTop"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/lbdescargando"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/lbdescargando_layout_marginTop"
+        android:textColor="#FFF"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/progressBar1"
+        android:text="Descargando..."/>
+
+
+   <!-- <Button
+        android:id="@+id/btnsonido"
+        android:layout_marginTop="@dimen/btnconfiguracion_layout_marginTop"
+        android:layout_width="@dimen/btnconfiguracion_layout_width"
+        android:layout_height="@dimen/btnconfiguracion_layout_height"
+        android:layout_marginRight="@dimen/btnconfiguracion_layout_marginRight"
+        android:layout_toLeftOf="@+id/btnconfiguracion"
+        android:background="@drawable/sonido"/>-->
+
+    <include
+        android:id="@+id/controles"
+        layout="@layout/test"/>
+
+    <Button
+        android:id="@+id/imagelogo"
+        android:layout_width="@dimen/logo_layout_width"
+        android:layout_height="@dimen/logo_layout_height"
+        android:layout_marginTop="@dimen/logo_layout_marginTop"
+        android:layout_marginLeft="@dimen/logo_layout_marginLeft"
+        android:foregroundGravity="left"
+        android:background="@drawable/logo"/>
+    <Button
+        android:id="@+id/btnsonido"
+        android:layout_marginTop="@dimen/btnconfiguracion_layout_marginTop"
+        android:layout_width="@dimen/btnconfiguracion_layout_width"
+        android:layout_height="@dimen/btnconfiguracion_layout_height"
+        android:layout_marginRight="@dimen/btnconfiguracion_layout_marginRight"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/sonido"/>
+
+</RelativeLayout>

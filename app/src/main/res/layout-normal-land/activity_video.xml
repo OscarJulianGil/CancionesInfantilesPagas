@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_video"
+    tools:context="cancionesinfantiles.toycantando.VideoActivity">
+
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <LinearLayout
+        android:id="@+id/controlVideo"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/arriba"/>
+
+            <Button
+                android:id="@+id/btnSalir"
+                android:layout_marginRight="@dimen/btnSalir_layout_marginRight"
+                android:layout_marginTop="@dimen/btnSalir_layout_marginTop"
+                android:layout_width="@dimen/btnSalir_layout_width"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/salirvideo"
+                android:layout_height="@dimen/btnSalir_layout_height" />
+
+            <Button
+                android:id="@+id/btnatrasar"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/btnatrasar_layout_marginRight"
+                android:layout_centerHorizontal="true"
+                android:layout_toLeftOf="@+id/btnplay"
+                />
+
+            <Button
+                android:id="@+id/btnplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="@dimen/btnplay_layout_marginRight"
+                android:background="@drawable/pausa"/>
+
+            <Button
+                android:id="@+id/btnadelantar"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@+id/btnplay"
+                />
+
+            <SeekBar
+                android:id="@+id/mediacontroller_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_above="@+id/sombraabajo"
+                android:layout_marginLeft="@dimen/mediacontroller_progress_layout_marginLeft"
+                android:layout_marginRight="@dimen/mediacontroller_progress_layout_marginRight"
+                android:layout_marginBottom="@dimen/mediacontroller_progress_layout_marginBottom"
+                android:thumb="@drawable/ovalo"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/sombraabajo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/abajo"/>
+        </RelativeLayout>
+        </LinearLayout>
+</RelativeLayout>

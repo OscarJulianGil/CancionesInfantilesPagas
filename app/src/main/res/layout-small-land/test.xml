@@ -1,0 +1,106 @@
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:windowTranslucentStatus="false"
+            android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/franja"
+            android:background="@drawable/franja"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/franjaazul_layout_height"
+            android:layout_marginBottom="@dimen/franjaazul_layout_marginBottom"
+           >
+        </ImageView>
+
+
+        <Gallery
+            android:id="@+id/gallery1"
+            android:layout_width="match_parent"
+            android:layout_above="@+id/franja"
+            android:spacing="@dimen/gallery_spacing"
+            android:unselectedAlpha="1.0"
+            android:layout_marginBottom="@dimen/gallery_layout_marginBottom"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/btncaja"
+            android:layout_width="@dimen/caja_layout_width"
+            android:layout_height="@dimen/caja_layout_height"
+            android:gravity="center"
+            android:maxLines="3"
+            android:textSize="@dimen/normalFont"
+            android:paddingLeft="@dimen/caja_paddingLeft"
+            android:paddingRight="@dimen/caja_paddingRight"
+            android:lineSpacingExtra="@dimen/quitarespacios"
+            android:includeFontPadding="false"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/caja"
+            android:layout_marginBottom="@dimen/caja_layout_marginBottom"
+            android:layout_centerHorizontal="true"/>
+
+
+        <Button
+            android:id="@+id/derecha"
+            android:layout_width="@dimen/btnderecha_layout_width"
+            android:layout_height="@dimen/btnderecha_layout_height"
+            android:layout_marginLeft="@dimen/btnderechalayout_marginLeft"
+            android:layout_toRightOf="@+id/btncaja"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/btnderecha_layout_marginBottom"
+            android:background="@drawable/derecha"/>
+
+        <Button
+            android:id="@+id/izquierda"
+            android:layout_marginRight="@dimen/btnizquierdo_layout_marginRight"
+            android:layout_width="@dimen/btnderecha_layout_width"
+            android:layout_height="@dimen/btnderecha_layout_height"
+            android:layout_toLeftOf="@+id/btncaja"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/btnderecha_layout_marginBottom"
+            android:background="@drawable/izquierda"/>
+
+        <Button
+            android:id="@+id/btncandado"
+            android:layout_width="@dimen/btncandado_layout_width"
+            android:layout_height="@dimen/btncandado_layout_height"
+            android:layout_toRightOf="@+id/btncaja"
+            android:layout_marginLeft="@dimen/btncandado_layout_marginLeft"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/btncandado_layout_marginBottom"
+            android:background="@drawable/candado"/>
+
+        <Button
+            android:id="@+id/textoizquierda"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/textoderecha_layout_height"
+            android:layout_toLeftOf="@+id/izquierda"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/textoderecha_layout_marginBottom"
+            android:textSize="@dimen/textoslaterales_text_size"
+            android:background="@drawable/transparente"/>
+
+        <Button
+            android:id="@+id/textoderecha"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/textoderecha_layout_height"
+            android:layout_toRightOf="@+id/derecha"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/textoderecha_layout_marginBottom"
+            android:textSize="@dimen/textoslaterales_text_size"
+            android:background="@drawable/transparente"/>
+
+    </RelativeLayout>
+</FrameLayout>

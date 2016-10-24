@@ -1,0 +1,114 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="normalFont">44dip</dimen>
+
+    <!--CAJA-->
+    <dimen name="caja_layout_width">348dp</dimen>
+    <dimen name="caja_layout_height">196dp</dimen>
+    <dimen name="caja_paddingLeft">20dp</dimen>
+    <dimen name="caja_paddingRight">20dp</dimen>
+    <dimen name="caja_layout_marginBottom">20dp</dimen>
+
+    <!--FRANJA AZUL-->
+    <dimen name="franjaazul_layout_height">116dp</dimen>
+    <dimen name="franjaazul_layout_marginBottom">60dp</dimen>
+
+    <!--BOTONES DE PASO-->
+    <dimen name="btnderecha_layout_width">84dp</dimen>
+    <dimen name="btnderecha_layout_height">88dp</dimen>
+    <dimen name="btnderechalayout_marginLeft">-20dp</dimen>
+    <dimen name="btnderecha_layout_marginBottom">70dp</dimen>
+    <dimen name="btnizquierdo_layout_marginRight">-20dp</dimen>
+
+    <!--GALERIA-->
+    <dimen name="gallery_layout_marginBottom">-220dp</dimen>
+    <dimen name="gallery_spacing">100dp</dimen>
+
+    <!--LOGO -->
+    <dimen name="logo_layout_width">168dp</dimen>
+    <dimen name="logo_layout_height">166dp</dimen>
+    <dimen name="logo_layout_marginTop">32dp</dimen>
+    <dimen name="logo_layout_marginLeft">32dp</dimen>
+
+    <!--BOTONES DE LA PANTALLA PRINCIPAL-->
+    <dimen name="btnconfiguracion_layout_width">110dp</dimen>
+    <dimen name="btnconfiguracion_layout_height">114dp</dimen>
+    <dimen name="btnconfiguracion_layout_marginRight">32dp</dimen>
+    <dimen name="btnconfiguracion_layout_marginTop">32dp</dimen>
+
+    <!--CANDADO-->
+    <dimen name="btncandado_layout_width">74dp</dimen>
+    <dimen name="btncandado_layout_height">88dp</dimen>
+    <dimen name="btncandado_layout_marginLeft">-60dp</dimen>
+    <dimen name="btncandado_layout_marginBottom">160dp</dimen>
+
+    <!--Texto Laterales-->
+    <dimen name="textoderecha_layout_height">114dp</dimen>
+    <dimen name="textoderecha_layout_marginBottom">60dp</dimen>
+
+    <!--DIMENSIONES DE LOS CONTROLES DE VIDEO-->
+    <dimen name="btnSalir_layout_marginRight">20dp</dimen>
+    <dimen name="btnSalir_layout_marginTop">20dp</dimen>
+    <dimen name="btnSalir_layout_width">62dp</dimen>
+    <dimen name="btnSalir_layout_height">62dp</dimen>
+    <dimen name="btnatrasar_layout_marginRight">100dp</dimen>
+    <dimen name="btnplay_layout_marginRight">40dp</dimen>
+    <dimen name="mediacontroller_progress_layout_marginLeft">120dp</dimen>
+    <dimen name="mediacontroller_progress_layout_marginRight">120dp</dimen>
+    <dimen name="mediacontroller_progress_layout_marginBottom">-40dp</dimen>
+
+
+    <!--DIMENSIONES DE LA PANTALLA DE COMPRA-->
+    <dimen name="menucompra_layout_width">818dp</dimen>
+    <dimen name="menucompra_layout_height">662dp</dimen>
+    <dimen name="btncerrarpantallacompra_layout_width">118dp</dimen>
+    <dimen name="btncerrarpantallacompra_layout_height">124dp</dimen>
+    <dimen name="btncerrarpantallacompra_layout_marginRight">224.6dp</dimen>
+    <dimen name="btncerrarpantallacompra_layout_marginTop">29dp</dimen>
+    <dimen name="fragment_compra_unitaria_layout_marginTop">137dp</dimen>
+    <dimen name="caja_compra_unitaria_layout_width">678dp</dimen>
+    <dimen name="caja_compra_unitaria_layout_height">224dp</dimen>
+    <dimen name="pnlControlesUnitarios_layout_marginTop">113.6dp</dimen>
+    <dimen name="pnlControlesUnitarios_layout_marginLeft">102.6dp</dimen>
+    <dimen name="btnCompraUnitaria_layout_width">198dp</dimen>
+    <dimen name="btnCompraUnitaria_layout_height">90dp</dimen>
+    <dimen name="btnCompraUnitaria_layout_marginLeft">16dp</dimen>
+    <dimen name="btncajoncompraunidad_layout_width">246dp</dimen>
+    <dimen name="btncajoncompraunidad_layout_height">82dp</dimen>
+    <dimen name="btncajoncompraunidad_paddingLeft">70dp</dimen>
+    <dimen name="fragment_total_compra_layout_marginTop">20.6dp</dimen>
+    <dimen name="fragment_total_compra_layout_marginRight">272.6dp</dimen>
+    <dimen name="caja_toda_coleccion_layout_width">438dp</dimen>
+    <dimen name="caja_toda_coleccion_layout_height">248dp</dimen>
+    <dimen name="txttodacoleccion_layout_height">164dp</dimen>
+    <dimen name="txttodacoleccion_layout_width">416dp</dimen>
+    <dimen name="txttodacoleccion_layout_marginLeft">10dp</dimen>
+    <dimen name="txttodacoleccion_layout_marginTop">20.6dp</dimen>
+    <dimen name="btnComprarTodaColeccion_layout_width">180dp</dimen>
+    <dimen name="btnComprarTodaColeccion_layout_height">82dp</dimen>
+    <dimen name="btnComprarTodaColeccion_layout_marginTop">4.6dp</dimen>
+    <dimen name="fragmentpersonaje_layout_marginTop">-20dp</dimen>
+    <dimen name="personaje_layout_width">255dp</dimen>
+    <dimen name="personaje_layout_height">313.6dp</dimen>
+    <dimen name="personaje_layout_marginRight">11.6dp</dimen>
+    <dimen name="personaje_layout_marginTop">-5dp</dimen>
+
+    <dimen name="btnizquierda_layout_marginLeft">30dp</dimen>
+    <dimen name="btnderecha_layout_marginRight">30dp</dimen>
+
+    <dimen name="lbValorTodaColeccion_layout_marginTop">116dp</dimen>
+    <dimen name="lbValorTodaColeccion_layout_marginLeft">96dp</dimen>
+    <dimen name="lbValorTodaColeccion_text_size">40sp</dimen>
+
+    <dimen name="lbNombrePersonaje_layout_height">80dp</dimen>
+    <dimen name="lbNombrePersonaje_layout_marginTop">160dp</dimen>
+    <dimen name="lbNombrePersonaje_text_size">50sp</dimen>
+    <dimen name="textoslaterales_text_size">36sp</dimen>
+    <dimen name="quitarespacios">-20dp</dimen>
+
+    <dimen name="progressBar1_layout_marginTop">32dp</dimen>
+    <dimen name="lbdescargando_layout_marginTop">20dp</dimen>
+
+</resources>

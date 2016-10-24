@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Canciones Infantiles</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="facebook_app_id">299546050420792</string>
+    <string name="title_activity_compras_">Compras_Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_token_">token_Activity</string>
+
+</resources>

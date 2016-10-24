@@ -1,0 +1,167 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cancionesinfantiles.toycantando.Compras_Activity$PlaceholderFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:id="@+id/framemainbox"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/menucompra"
+                android:layout_width="@dimen/menucompra_layout_width"
+                android:layout_height="@dimen/menucompra_layout_height"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/cajon_completo"/>
+        </FrameLayout>
+        <Button
+            android:id="@+id/btncerrarpantallacompra"
+            android:layout_width="@dimen/btncerrarpantallacompra_layout_width"
+            android:layout_height="@dimen/btncerrarpantallacompra_layout_height"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/btncerrarpantallacompra_layout_marginRight"
+            android:layout_marginTop="@dimen/btncerrarpantallacompra_layout_marginTop"
+            android:background="@drawable/cerrar"/>
+
+
+    <FrameLayout
+        android:id="@+id/fragment_compra_unitaria"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fragment_compra_unitaria_layout_marginTop"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/caja_compra_unitaria"
+            android:layout_width="@dimen/caja_compra_unitaria_layout_width"
+            android:layout_height="@dimen/caja_compra_unitaria_layout_height"
+            android:background="@drawable/caja_grande"/>
+
+            <RelativeLayout
+                android:id="@+id/pnlControlesUnitarios"
+                android:layout_marginTop="@dimen/pnlControlesUnitarios_layout_marginTop"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/pnlControlesUnitarios_layout_marginLeft"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btnCompraUnitaria"
+                    android:layout_width="@dimen/btnCompraUnitaria_layout_width"
+                    android:layout_height="@dimen/btnCompraUnitaria_layout_height"
+                    android:layout_toRightOf="@+id/btncajoncompraunidad"
+                    android:layout_marginLeft="@dimen/btnCompraUnitaria_layout_marginLeft"
+                    android:background="@drawable/boton_comprar_unidad"/>
+
+                <Button
+                    android:id="@+id/btnVerVideo"
+                    android:layout_width="@dimen/btnCompraUnitaria_layout_width"
+                    android:layout_height="@dimen/btnCompraUnitaria_layout_height"
+                    android:layout_toRightOf="@+id/btncajoncompraunidad"
+                    android:layout_marginLeft="@dimen/btnCompraUnitaria_layout_marginLeft"
+                    android:visibility="gone"
+                    android:background="@drawable/btn_ver_video"/>
+                <Button
+                    android:id="@+id/btncajoncompraunidad"
+                    android:layout_width="@dimen/btncajoncompraunidad_layout_width"
+                    android:layout_height="@dimen/btncajoncompraunidad_layout_height"
+                    android:paddingLeft="@dimen/btncajoncompraunidad_paddingLeft"
+                    android:textSize="21sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/cajon_compra_unidad"/>
+            </RelativeLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/lbNombrePersonaje"
+        android:layout_width="wrap_content"
+        android:text="A la vibora de la mar"
+        android:textColor="#FFF"
+        android:background="@drawable/transparente"
+        android:layout_height="@dimen/lbNombrePersonaje_layout_height"
+        android:layout_weight="1"
+        android:textSize="@dimen/lbNombrePersonaje_text_size"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/lbNombrePersonaje_layout_marginTop"/>
+
+
+        <FrameLayout
+        android:id="@+id/fragment_total_compra"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@+id/fragment_compra_unitaria"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/fragment_total_compra_layout_marginTop"
+        android:layout_marginRight="@dimen/fragment_total_compra_layout_marginRight"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/caja_toda_coleccion"
+            android:layout_width="@dimen/caja_toda_coleccion_layout_width"
+            android:layout_height="@dimen/caja_toda_coleccion_layout_height"
+            android:background="@drawable/cajon_promocion"/>
+        <ImageView
+            android:id="@+id/txttodacoleccion"
+            android:layout_width="@dimen/txttodacoleccion_layout_width"
+            android:layout_height="@dimen/txttodacoleccion_layout_height"
+            android:layout_marginLeft="@dimen/txttodacoleccion_layout_marginLeft"
+            android:layout_marginTop="@dimen/txttodacoleccion_layout_marginTop"
+            android:background="@drawable/toda_la_coleccion"/>
+
+        <TextView
+            android:id="@+id/lbValorTodaColeccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/lbValorTodaColeccion_text_size"
+            android:layout_toRightOf="@+id/btnComprarTodaColeccion"
+            android:layout_marginTop="@dimen/lbValorTodaColeccion_layout_marginTop"
+            android:layout_marginLeft="@dimen/lbValorTodaColeccion_layout_marginLeft"/>
+        <Button
+            android:id="@+id/btnComprarTodaColeccion"
+            android:layout_width="@dimen/btnComprarTodaColeccion_layout_width"
+            android:layout_height="@dimen/btnComprarTodaColeccion_layout_height"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/txttodacoleccion"
+            android:layout_marginTop="@dimen/btnComprarTodaColeccion_layout_marginTop"
+            android:background="@drawable/boton_comprar"/>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fragmentpersonaje"
+        android:layout_toLeftOf="@+id/fragment_total_compra"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/fragmentpersonaje_layout_marginTop"
+        android:layout_below="@+id/fragment_compra_unitaria"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/personaje"
+            android:layout_width="@dimen/personaje_layout_width"
+            android:layout_marginRight="@dimen/personaje_layout_marginRight"
+            android:layout_marginTop="@dimen/personaje_layout_marginTop"
+            android:layout_height="@dimen/personaje_layout_height" />
+
+    </FrameLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
