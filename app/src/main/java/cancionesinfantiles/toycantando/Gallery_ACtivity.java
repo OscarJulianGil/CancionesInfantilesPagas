@@ -315,7 +315,7 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
         ObjectAnimator animScrollToTop;
         switch (Recursos.GetSizeScreen(getBaseContext())){
             case 1://Small
-                animScrollToTop = ObjectAnimator.ofFloat(pObject, "translationY",  (-40f), (-20f));
+                animScrollToTop = ObjectAnimator.ofFloat(pObject, "translationY",  (-20f), (-10f));
                 break;
             case 2://Normal
                 animScrollToTop = ObjectAnimator.ofFloat(pObject, "translationY", -80f, -60f);
@@ -401,7 +401,9 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
     }
 
 
-    ///Sube la imagen encima de la caja
+    /*
+    * Animacion que sube la imagen encima de la caja
+    * */
     private void AnimationDownButton(final View pObject, int Position){
         int valor=200;
         int valor2=165;
