@@ -50,15 +50,15 @@ public class ProductoEntity {
                 ,""
         ,"El Barquito Chiquitito");
         misproductos.add(prd);
-        prd = new Producto("sol_solecito",R.drawable.sol_solecito,4,
+        /*prd = new Producto("sol_solecito",R.drawable.sol_solecito,4,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/5-sol-solecito.mp4",
                 "",
                 false,
                 Constantes.solsolecitoKey
                 ,"",
                 "Sol Solecito");
-        misproductos.add(prd);
-        prd = new Producto("patico_patico",R.drawable.patico_patico,5,
+        misproductos.add(prd);*/
+        prd = new Producto("patico_patico",R.drawable.patico_patico,4,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/6-patico-patico.mp4",
                 "",
                 false,
@@ -66,7 +66,7 @@ public class ProductoEntity {
                 ,""
         ,"Patico, Patico");
         misproductos.add(prd);
-        prd = new Producto("tres_elefantes",R.drawable.patico_patico,6,
+        prd = new Producto("tres_elefantes",R.drawable.patico_patico,5,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/7-tres-elefantes.mp4",
                 "",
                 false,
@@ -74,7 +74,7 @@ public class ProductoEntity {
                 ,"",
                 "Tres Elefantes");
         misproductos.add(prd);
-        prd = new Producto("a_mi_burro",R.drawable.a_mi_burro,7,
+        prd = new Producto("a_mi_burro",R.drawable.a_mi_burro,6,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/8-a-mi-burro.mp4",
                 "",
                 false,
@@ -82,15 +82,15 @@ public class ProductoEntity {
                 ,"",
                 "A Mi Burro");
         misproductos.add(prd);
-        prd = new Producto("los_pollitos",R.drawable.los_pollitos,8,
+        /*prd = new Producto("los_pollitos",R.drawable.los_pollitos,7,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/9-los-pollitos-dicen.mp4",
                 "",
                 false,
                 Constantes.lospollitosKey
                 ,"",
                 "Los Pollitos Dicen");
-        misproductos.add(prd);
-        prd = new Producto("arroz_con_leche",R.drawable.arroz_con_leche,9,
+        misproductos.add(prd);*/
+        prd = new Producto("arroz_con_leche",R.drawable.arroz_con_leche,7,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/10-arroz-con-leche.mp4",
                 "",
                 false,
@@ -98,7 +98,7 @@ public class ProductoEntity {
                 ,"",
                 "Arroz Con Leche");
         misproductos.add(prd);
-        prd = new Producto("a_la_vibora_de_la_mar",R.drawable.a_la_vibora_de_la_mar,10,
+        prd = new Producto("a_la_vibora_de_la_mar",R.drawable.a_la_vibora_de_la_mar,8,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/11-a-la-vibora-de-la-mar.mp4",
                 "",
                 false,
@@ -106,7 +106,7 @@ public class ProductoEntity {
                 ,"",
                 "A La Víbora De La Mar");
         misproductos.add(prd);
-        prd = new Producto("cucu",R.drawable.a_la_vibora_de_la_mar,11,
+        prd = new Producto("cucu",R.drawable.cucu,9,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/12-cu-cu.mp4",
                 "",
                 false,
@@ -114,15 +114,15 @@ public class ProductoEntity {
                 ,"",
                 "Cucú");
         misproductos.add(prd);
-        prd = new Producto("vaca_lechera",R.drawable.vaca_lechera,12,
+        /*prd = new Producto("vaca_lechera",R.drawable.vaca_lechera,12,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/13-la-vaca-lechera.mp4",
                 "",
                 false,
                 Constantes.vacalecheraKey
                 ,"",
                 "La Vaca Lechera");
-        misproductos.add(prd);
-        prd = new Producto("debajo_de_un_boton",R.drawable.debajo_de_un_boton,13,
+        misproductos.add(prd);*/
+        prd = new Producto("debajo_de_un_boton",R.drawable.debajo_de_un_boton,10,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/14-debajo-de-un-boton.mp4",
                 "",
                 false,
@@ -130,7 +130,7 @@ public class ProductoEntity {
                 ,"",
                 "Debajo De Un Botón");
         misproductos.add(prd);
-        prd = new Producto("juguemos_en_el_bosque",R.drawable.juguemos_en_el_bosque,14,
+        prd = new Producto("juguemos_en_el_bosque",R.drawable.juguemos_en_el_bosque,11,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/15-juguemos-en-el-bosque.mp4",
                 "",
                 false,
@@ -138,7 +138,7 @@ public class ProductoEntity {
                 ,"",
                 "Juguemos En El Bosque");
         misproductos.add(prd);
-        prd = new Producto("la_pajara_pinta",R.drawable.la_pajara_pinta,15,
+        prd = new Producto("la_pajara_pinta",R.drawable.la_pajara_pinta,12,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/16-la-pajara-pinta.mp4",
                 "",
                 false,
@@ -146,7 +146,7 @@ public class ProductoEntity {
                 ,"",
                 "La Pájara Pinta");
         misproductos.add(prd);
-        prd = new Producto("cuando_tengas_muchas_ganas",R.drawable.cuando_tengas_muchas_ganas,16,
+        prd = new Producto("cuando_tengas_muchas_ganas",R.drawable.cuando_tengas_muchas_ganas,13,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/18-cuando-tengas-muchas-ganas.mp4",
                 "",
                 false,
@@ -154,7 +154,7 @@ public class ProductoEntity {
                 ,"",
                 "Cuando Tengas Muchas Ganas");
         misproductos.add(prd);
-        prd = new Producto("el_patio_de_mi_casa",R.drawable.el_patio_de_mi_casa,17,
+        prd = new Producto("el_patio_de_mi_casa",R.drawable.el_patio_de_mi_casa,14,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/17-el-patio-de-mi-casa.mp4",
                 "",
                 false,
@@ -162,7 +162,7 @@ public class ProductoEntity {
                 ,"",
                 "El Patio De Mi Casa");
         misproductos.add(prd);
-        prd = new Producto("la_muneca_vestida_de_azul",R.drawable.la_muneca_vestida_de_azul,18,
+        prd = new Producto("la_muneca_vestida_de_azul",R.drawable.la_muneca_vestida_de_azul,15,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/19-la-muneca-vestida-de-azul.mp4",
                 "",
                 false,
@@ -170,7 +170,7 @@ public class ProductoEntity {
                 ,"",
                 "La Muñeca Vestida De Azul");
         misproductos.add(prd);
-        prd = new Producto("este_dedito",R.drawable.este_dedito,19,
+        prd = new Producto("este_dedito",R.drawable.este_dedito,16,
                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/20-este-dedito.mp4",
                 "",
                 false,

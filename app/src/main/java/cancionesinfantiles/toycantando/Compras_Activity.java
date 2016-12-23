@@ -39,7 +39,7 @@ public class Compras_Activity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
+     * cancionesinfantiles.toycantando.fragments for each of the sections. We use a
      * {@link FragmentPagerAdapter} derivative, which will keep every
      * loaded fragment in memory. If this becomes too memory intensive, it
      * may be best to switch to a
@@ -135,14 +135,14 @@ public class Compras_Activity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        this.stopService(new Intent(this, MusicService.class));
+        //this.stopService(new Intent(this, MusicService.class));
     }
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        this.stopService(new Intent(this, MusicService.class));
+        //this.stopService(new Intent(this, MusicService.class));
         /*if (mService != null) {
             unbindService(mServiceConn);
         }*/
@@ -167,7 +167,6 @@ public class Compras_Activity extends AppCompatActivity {
         private Button btncerrarpantallacompra;
         private Button btnCompraUnitaria;
         private Button btncajoncompraunidad;
-        private String ItemID="";
         private TextView lbValorTodaColeccion;
         private Button btnComprarTodaColeccion;
         private Producto productoToComprar;
@@ -228,8 +227,9 @@ public class Compras_Activity extends AppCompatActivity {
             btncerrarpantallacompra.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent goInicio= new Intent(getContext(),Gallery_ACtivity.class);
-                    startActivity(goInicio);
+                    getActivity().onBackPressed();
+                    //Intent goInicio= new Intent(getContext(),Gallery_ACtivity.class);
+                    //startActivity(goInicio);
                 }
             });
             btnVerVideo=(Button) rootView.findViewById(R.id.btnVerVideo);
@@ -318,7 +318,7 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 5) {
+            /*else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 5) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.sol_solecito));
                 Producto prd = Gallery_ACtivity.SearchProducto(4);
                 btncajoncompraunidad.setText(prd.getPrecio());
@@ -334,10 +334,10 @@ public class Compras_Activity extends AppCompatActivity {
                     btnCompraUnitaria.setVisibility(View.VISIBLE);
 
                 }
-            }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 6) {
+            }*/
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 5) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.patico_patico));
-                Producto prd = Gallery_ACtivity.SearchProducto(5);
+                Producto prd = Gallery_ACtivity.SearchProducto(4);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("Patico, Patico");
@@ -352,9 +352,9 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 7) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 6) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.tres_elefantes));
-                Producto prd = Gallery_ACtivity.SearchProducto(6);
+                Producto prd = Gallery_ACtivity.SearchProducto(5);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("Tres Elefantes");
@@ -369,14 +369,14 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 8) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 7) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.a_mi_burro));
-                Producto prd = Gallery_ACtivity.SearchProducto(7);
+                Producto prd = Gallery_ACtivity.SearchProducto(6);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("A Mi Burro");
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 9) {
+            /*else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 9) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.los_pollitos));
                 Producto prd = Gallery_ACtivity.SearchProducto(8);
                 btncajoncompraunidad.setText(prd.getPrecio());
@@ -392,10 +392,10 @@ public class Compras_Activity extends AppCompatActivity {
                     btnCompraUnitaria.setVisibility(View.VISIBLE);
 
                 }
-            }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 10) {
+            }*/
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 8) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.arroz_con_leche));
-                Producto prd = Gallery_ACtivity.SearchProducto(9);
+                Producto prd = Gallery_ACtivity.SearchProducto(7);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("Arroz Con Leche");
@@ -410,9 +410,9 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 11) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 9) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.a_la_vibora_de_la_mar));
-                Producto prd = Gallery_ACtivity.SearchProducto(10);
+                Producto prd = Gallery_ACtivity.SearchProducto(8);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("A La Víbora De La Mar");
@@ -427,9 +427,9 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 12) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 10) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.cucu));
-                Producto prd = Gallery_ACtivity.SearchProducto(11);
+                Producto prd = Gallery_ACtivity.SearchProducto(9);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("Cucú");
@@ -442,7 +442,7 @@ public class Compras_Activity extends AppCompatActivity {
                     btnCompraUnitaria.setVisibility(View.VISIBLE);
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 13) {
+            /*else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 13) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.vaca_lechera));
                 Producto prd = Gallery_ACtivity.SearchProducto(12);
                 btncajoncompraunidad.setText(prd.getPrecio());
@@ -458,10 +458,10 @@ public class Compras_Activity extends AppCompatActivity {
                     btnCompraUnitaria.setVisibility(View.VISIBLE);
 
                 }
-            }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 14) {
+            }*/
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 11) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.debajo_de_un_boton));
-                Producto prd = Gallery_ACtivity.SearchProducto(13);
+                Producto prd = Gallery_ACtivity.SearchProducto(10);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("Debajo De Un Botón");
@@ -476,9 +476,9 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 15) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 12) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.juguemos_en_el_bosque));
-                Producto prd = Gallery_ACtivity.SearchProducto(14);
+                Producto prd = Gallery_ACtivity.SearchProducto(11);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("Juguemos En El Bosque");
@@ -493,9 +493,9 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 16) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 13) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.la_pajara_pinta));
-                Producto prd = Gallery_ACtivity.SearchProducto(15);
+                Producto prd = Gallery_ACtivity.SearchProducto(12);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("La Pájara Pinta");
@@ -510,9 +510,9 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 17) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 14) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.cuando_tengas_muchas_ganas));
-                Producto prd = Gallery_ACtivity.SearchProducto(16);
+                Producto prd = Gallery_ACtivity.SearchProducto(13);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("Cuando Tengas Muchas Ganas");
@@ -527,16 +527,15 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 18) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 15) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.el_patio_de_mi_casa));
-                ItemID = Constantes.elpatiodemicasaKey;
-                Producto prd = Gallery_ACtivity.SearchProducto(17);
+                Producto prd = Gallery_ACtivity.SearchProducto(14);
                 btncajoncompraunidad.setText(prd.getPrecio());
+                productoToComprar = prd;
                 lbNombrePersonaje.setText("El Patio De Mi Casa");
                 if(prd.isPurchased()){
                     btnVerVideo.setVisibility(View.VISIBLE);
                     btnCompraUnitaria.setVisibility(View.GONE);
-
                 }
                 else{
                     btnVerVideo.setVisibility(View.GONE);
@@ -544,9 +543,9 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 19) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 16) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.la_muneca_vestida_de_azul));
-                Producto prd = Gallery_ACtivity.SearchProducto(18);
+                Producto prd = Gallery_ACtivity.SearchProducto(15);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("La Muñeca Vestida De Azul");
@@ -561,9 +560,9 @@ public class Compras_Activity extends AppCompatActivity {
 
                 }
             }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 20) {
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 17) {
                 personaje.setImageDrawable(getResources().getDrawable(R.drawable.este_dedito));
-                Producto prd = Gallery_ACtivity.SearchProducto(19);
+                Producto prd = Gallery_ACtivity.SearchProducto(16);
                 btncajoncompraunidad.setText(prd.getPrecio());
                 productoToComprar = prd;
                 lbNombrePersonaje.setText("Este Dedito Compró Un Huevito");
@@ -597,15 +596,13 @@ public class Compras_Activity extends AppCompatActivity {
             public void onIabPurchaseFinished(IabResult result, Purchase purchase)
             {
                 if (result.isFailure()) {
-                   //GoGallery(productoToComprar,IsTodaColeccion);
-                    return;
                 }
                 else if (purchase.getSku().equals(productoToComprar.getIdGoogleCompra())) {
-                   GoGallery(productoToComprar,IsTodaColeccion);
+                    new Compras_Activity().GoGallery(productoToComprar,IsTodaColeccion);
                 }
                 else if(IsTodaColeccion){
                     if(purchase.getSku().equals(Constantes.TodaColeccionKey)){
-                        GoGallery(productoToComprar,IsTodaColeccion);
+                        new Compras_Activity().GoGallery(productoToComprar,IsTodaColeccion);
                     }
                 }
             }
@@ -615,7 +612,7 @@ public class Compras_Activity extends AppCompatActivity {
     /*
     * Cuando se compra un producto lo envia a la actividad principal para iniciar la descarga
     * */
-    public static void GoGallery(Producto prd,boolean todo){
+    public void GoGallery(Producto prd,boolean todo){
         Gallery_ACtivity.producto_comprado = prd;
         Intent goInicio= new Intent(contexto,Gallery_ACtivity.class);
         if(todo)
@@ -645,8 +642,7 @@ public class Compras_Activity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 20;
+            return 17;
         }
 
         @Override
@@ -685,12 +681,6 @@ public class Compras_Activity extends AppCompatActivity {
                 case 15:
                     return "";
                 case 16:
-                    return "";
-                case 17:
-                    return "";
-                case 18:
-                    return "";
-                case 19:
                     return "";
             }
             return null;

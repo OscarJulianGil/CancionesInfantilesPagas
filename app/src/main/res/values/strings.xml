@@ -9,4 +9,9 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_token_">token_Activity</string>
 
+    <string name="debug">regular</string>
+    <!--<string name="admob_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_interstitial_id">ca-app-pub-3940256099942544/4411468910</string>-->
+    <string name="admob_banner_id">0</string>
+    <string name="admob_interstitial_id">0</string>
 </resources>

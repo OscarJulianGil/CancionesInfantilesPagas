@@ -1,5 +1,7 @@
 package cancionesinfantiles.toycantando;
 
+import android.*;
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -12,13 +14,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Path;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +35,7 @@ import android.view.animation.BounceInterpolator;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Gallery;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -45,6 +52,7 @@ import Entidades.Producto;
 import Negocio.Constantes;
 import Negocio.ProductoEntity;
 import Negocio.Recursos;
+import Negocio.Session;
 import cancionesinfantiles.toycantando.util.IabHelper;
 import cancionesinfantiles.toycantando.util.IabResult;
 import cancionesinfantiles.toycantando.util.Inventory;
@@ -64,27 +72,27 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
     private Button textoderecha;
     private Button textoizquierda;
     private int positionObjectGallery=0;
-    private int  controltextazul = 0;
     private long DownloadManagerId;
     private Button imagelogo;
     private BroadcastReceiver receiver;
     private ProgressBar mProgressBar;
     private TextView lbdescargando;
     private boolean DownloadInProgress = false;
+    private ImageButton btn_jugar;
     private Integer[] mImageIds = {
             R.drawable.pimpon,
             R.drawable.pinocho,
             R.drawable.mi_carita,
             R.drawable.barquito,
-            R.drawable.sol_solecito,
+            //R.drawable.sol_solecito,
             R.drawable.patico_patico,
             R.drawable.tres_elefantes,
             R.drawable.a_mi_burro,
-            R.drawable.los_pollitos,
+            //R.drawable.los_pollitos,
             R.drawable.arroz_con_leche,
             R.drawable.a_la_vibora_de_la_mar,
             R.drawable.cucu,
-            R.drawable.vaca_lechera,
+            //R.drawable.vaca_lechera,
             R.drawable.debajo_de_un_boton,
             R.drawable.juguemos_en_el_bosque,
             R.drawable.la_pajara_pinta,
@@ -94,11 +102,17 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
             R.drawable.este_dedito
     };
     public static Producto producto_comprado;
+    ///Control del sonido de la app
+    public static MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery__activity);
+        player = MediaPlayer.create(this, R.raw.audiofondo);
+        player.setLooping(true); // Set looping
+        player.setVolume(100,100);
+        player.start();
         ///Oculta la barra de notificaciones del telefono
         getSupportActionBar().hide();
         Recursos.DoFullScreen(this);
@@ -134,7 +148,12 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
             }
         });
         InitControls();
+        ValidateCompra();
+        g.setSelection(1);
+    }
 
+
+    private  void ValidateCompra(){
         /*
         * Valida si se compro algo
         * */
@@ -142,7 +161,6 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
         ///Compro un solo producto
         if (extras != null && extras.getInt("TODO") == 0) {
             if(producto_comprado != null)
-                //Descargar(producto_comprado);
                 new DowloadVideo(producto_comprado,false).execute();
             else
                 Toast.makeText(this,"No hay un producto para comprar",Toast.LENGTH_SHORT).show();
@@ -151,7 +169,59 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
         else if(extras != null && extras.getInt("TODO") == 1){
             new DowloadVideo(producto_comprado,true).execute();
         }
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        /*
+        * Para android M o superior debe pedir autorizacion directa al usuario
+        * */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ValidatePermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+    }
+
+    /*
+    * Verifica si tiene los permisos necesarios para la aplicacion
+    * Esto lo usa android M
+    * */
+    private void ValidatePermission(String permiso){
+        if (ContextCompat.checkSelfPermission(this,permiso)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,permiso)) {
+
+                Toast.makeText(this,"Para acceder a todos los recursos de la aplicación debes proporcionar los siguientes permisos",Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this,new String[]{permiso},2016);
+
+            } else {
+                ActivityCompat.requestPermissions(this,new String[]{permiso},2016);
+            }
+        }
+    }
+
+    /*
+    * Abre la modal de permisos a la aplicacion
+    * */
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 2016: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 
     /*Lista los productos*/
@@ -277,6 +347,7 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
             }
         });
         btncandado=(Button) findViewById(R.id.btncandado);
+        btn_jugar=(ImageButton) findViewById(R.id.btn_jugar);
         btnsonido=(Button) findViewById(R.id.btnsonido);
         btncaja=(TextView) findViewById(R.id.btncaja);
         textoderecha =(Button) findViewById(R.id.textoderecha);
@@ -288,8 +359,13 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
             public void onClick(View v) {
                 //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/f?href=" + "https://www.facebook.com/ToyCantando"));
                 //startActivity(intent);
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://gze.es/RedirectAppFacebook"));
-                startActivity(browserIntent);
+                if(DownloadInProgress){
+                    Toast.makeText(getBaseContext(),"Hay una descarga en progreso, por favor espera...",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://gze.es/RedirectAppFacebook"));
+                    startActivity(browserIntent);
+                }
             }
         });
         textoderecha.setTypeface(custom_font);
@@ -307,6 +383,7 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
         izquierda=(Button)findViewById(R.id.izquierda);
         izquierda.setOnClickListener(this);
         btnsonido.setOnClickListener(this);
+        btn_jugar.setOnClickListener(this);
     }
 
 
@@ -453,7 +530,10 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
     @Override
     public void onDestroy() {
         super.onDestroy();
-        this.stopService(new Intent(this, MusicService.class));
+        if(player != null){
+            player.stop();
+        }
+        //this.stopService(new Intent(this, MusicService.class));
         /*if (mService != null) {
             unbindService(mServiceConn);
         }*/
@@ -496,85 +576,84 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
                 btncaja.setTextColor(getResources().getColor(R.color.colorPrimary));
                 btncaja.setText("El Barquito Chiquitito");
                 textoizquierda.setText("Mi Carita");
-                textoderecha.setText("Sol Solecito");
+                textoderecha.setText("Patico, Patico");
                 break;
-            case 4:
+            /*case 4:
                 btncaja.setText("Sol Solecito");
                 textoizquierda.setText("El Barquito Chiquitito");
                 textoderecha.setText("Patico, Patico");
-                break;
-            case 5:
+                break;*/
+            case 4:
                 btncaja.setText("Patico, Patico");
-                textoizquierda.setText("Sol Solecito");
+                textoizquierda.setText("El Barquito Chiquitito");
                 textoderecha.setText("Tres Elefantes");
                 break;
-            case 6:
+            case 5:
                 btncaja.setText("Tres Elefantes");
                 textoizquierda.setText("Patico, Patico");
                 textoderecha.setText("A Mi Burro");
                 break;
-            case 7:
+            case 6:
                 btncaja.setText("A Mi Burro");
                 textoizquierda.setText("Tres Elefantes");
-                textoderecha.setText("Los Pollitos Dicen");
+                textoderecha.setText("Arroz Con Leche");
                 break;
-            case 8:
+            /*case 7:
                 btncaja.setText("Los Pollitos Dicen");
                 textoizquierda.setText("A Mi Burro");
                 textoderecha.setText("Arroz Con Leche");
-                break;
-            case 9:
+                break;*/
+            case 7:
                 btncaja.setText("Arroz Con Leche");
-                textoizquierda.setText("Los Pollitos Dicen");
+                textoizquierda.setText("A Mi Burro");
                 textoderecha.setText("A La Víbora De La Mar");
                 break;
-            case 10:
+            case 8:
                 btncaja.setText("A La Víbora De La Mar");
                 textoizquierda.setText("Arroz Con Leche");
                 textoderecha.setText("Cucú");
                 break;
-            case 11:
+            case 9:
                 btncaja.setText("Cucú");
                 textoizquierda.setText("A La Víbora De La Mar");
-                textoderecha.setText("La Vaca Lechera");
+                textoderecha.setText("Debajo De Un Botón");
                 break;
-            case 12:
+            /*case 10:
                 btncaja.setText("La Vaca Lechera");
                 textoizquierda.setText("Cucú");
                 textoderecha.setText("Debajo De Un Botón");
-                break;
-            case 13:
+                break;*/
+            case 10:
                 btncaja.setText("Debajo De Un Botón");
-                textoizquierda.setText("La Vaca Lechera");
+                textoizquierda.setText("Cucú");
                 textoderecha.setText("Juguemos En El Bosque");
                 break;
-            case 14:
+            case 11:
                 btncaja.setText("Juguemos En El Bosque");
                 textoizquierda.setText("Debajo De Un Botón");
                 textoderecha.setText("La Pájara Pinta");
                 break;
-            case 15:
+            case 12:
                 btncaja.setText("La Pájara Pinta");
                 textoizquierda.setText("Juguemos En El Bosque");
                 textoderecha.setText("Cuando Tengas Muchas Ganas");
                 break;
-            case 16:
+            case 13:
                 btncaja.setText("Cuando Tengas Muchas Ganas");
                 textoizquierda.setText("La Pájara Pinta");
                 textoderecha.setText("El Patio De Mi Casa");
                 break;
-            case 17:
+            case 14:
                 btncaja.setText("El Patio De Mi Casa");
                 textoizquierda.setText("Cuando Tengas Muchas Ganas");
                 textoderecha.setText("La Muñeca Vestida De Azul");
                 break;
-            case 18:
+            case 15:
                 btncaja.setText("La Muñeca Vestida De Azul");
                 textoizquierda.setText("El Patio De Mi Casa");
                 textoderecha.setText("Este Dedito Compró Un Huevito");
                 break;
-            case 19:
-                controltextazul = 1;
+            case 16:
                 btncaja.setText("Este Dedito Compró Un Huevito");
                 textoizquierda.setText("La Muñeca Vestida De Azul");
                 //En la vista infinita habilitar esto
@@ -595,12 +674,27 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
         return null;
     }
 
-
-
     /*
     * Aca debe validar si manda a la pantalla de compras o si muestra el video
     * */
     private void ValidarVideo(int position) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int Permisos= ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if(Permisos !=  PackageManager.PERMISSION_GRANTED)
+            {
+                ValidatePermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                return;
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int Permisos= ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            if(Permisos !=  PackageManager.PERMISSION_GRANTED)
+            {
+                ValidatePermission(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+                return;
+            }
+        }
+
         if(DownloadInProgress){
             Toast.makeText(getBaseContext(),"Hay una descarga en progreso, por favor espera...",Toast.LENGTH_SHORT).show();
         }
@@ -610,12 +704,11 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
             ///El producto esta comprado
             if (pdr != null && pdr.isPurchased()) {
                 if(pdr.getPosition() != 0) {
-                    File root = android.os.Environment.getExternalStorageDirectory();
-                    File dir = new File(root.getAbsolutePath() + Constantes.PathLocal);
+                    File dir =Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) +Constantes.local);
                     if (dir.exists() == false) {
                         dir.mkdirs();
                     }
-                    dir = new File(root.getAbsolutePath() + Constantes.PathLocal + pdr.getNombreProducto() + ".mp4");
+                    dir = Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) +Constantes.local + pdr.getNombreProducto() + ".mp4");
                     if (!dir.exists()) {
                         new DowloadVideo(pdr,false).execute();
                     } else {
@@ -641,7 +734,11 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
     @Override
     public void onResume() {
         super.onResume();
-        this.startService(new Intent(this, MusicService.class));
+        if(player != null){
+            if(!Session.IsMute(getBaseContext()))
+                player.start();
+        }
+        //this.startService(new Intent(this, MusicService.class));
         ///Oculta los controles laterales de la pantalla
         if(Build.VERSION.SDK_INT < 19){
             View v = this.getWindow().getDecorView();
@@ -656,7 +753,11 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
 
     @Override protected void onRestart() {
         super.onRestart();
-        this.startService(new Intent(this, MusicService.class));
+        if(player != null){
+            if(!Session.IsMute(getBaseContext()))
+                player.start();
+        }
+        //this.startService(new Intent(this, MusicService.class));
         SharedPreferences prefs = getSharedPreferences(Constantes.Preferences, Context.MODE_PRIVATE);
         if(prefs != null && prefs.contains("mis_productos")){
             mis_productos = Recursos.Getmis_productos(this);
@@ -670,16 +771,20 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
         }
     }
 
-    @Override protected void onStart() {
+    @Override
+    protected void onStart() {
         super.onStart();
-        this.startService(new Intent(this, MusicService.class));
+        //this.startService(new Intent(this, MusicService.class));
     }
 
     /*Cuando la actividad queda en backgroud e invisible*/
     @Override
     public void onStop() {
         super.onStop();
-        this.stopService(new Intent(this, MusicService.class));
+        if(player != null){
+            player.pause();
+        }
+        //this.stopService(new Intent(this, MusicService.class));
         ///Oculta los controles laterales de la pantalla
         if(Build.VERSION.SDK_INT < 19){
             View v = this.getWindow().getDecorView();
@@ -696,7 +801,10 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
     @Override
     public void onPause() {
         super.onPause();
-        this.stopService(new Intent(this, MusicService.class));
+        if(player != null){
+            player.pause();
+        }
+        //this.stopService(new Intent(this, MusicService.class));
         ///Oculta los controles laterales de la pantalla
         if(Build.VERSION.SDK_INT < 19){
             View v = this.getWindow().getDecorView();
@@ -732,41 +840,41 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
                 mp1.start();
             }
             if(positionObjectGallery == 0)
-                return;;
-            controltextazul = 0;
+                return;
             positionObjectGallery = positionObjectGallery-1;
             g.setSelection(positionObjectGallery);
         }
+        else if(v.getId()==btn_jugar.getId()){
+            if(DownloadInProgress){
+                Toast.makeText(getBaseContext(),"Hay una descarga en progreso, por favor espera...",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent GoGame = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(GoGame);
+            }
+        }
+        ///Evento click en el boton de sonido
         else if(v.getId()==btnsonido.getId()){
-
-            if(MusicService.player != null){
-                if(MusicService.player.isPlaying())
+            if(player != null){
+                if(player.isPlaying())
                 {
-                    MusicService.player.pause();
+                    player.pause();
                     btnsonido.setBackgroundResource(R.drawable.silencio);
+                    Session.ValidateSonido(getBaseContext(),true);
                 }
                 else{
-                    MusicService.player.start();
+                    player.start();
                     btnsonido.setBackgroundResource(R.drawable.sonido);
+                    Session.ValidateSonido(getBaseContext(),false);
                 }
-
             }
-            /*AudioManager am;
-            am= (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
-            am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-            btnsonido.setBackgroundResource(R.drawable.silencio);
-            if(am.getRingerMode() == AudioManager.RINGER_MODE_NORMAL){
-
-            }
-            else if(am.getRingerMode() == AudioManager.RINGER_MODE_SILENT) {
-                am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-                btnsonido.setBackgroundResource(R.drawable.sonido);
-            }*/
-            //For Vibrate mode
-            //am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
         }
     }
 
+
+    /*
+    * Valida que el dispositivo soporte los servicios de Google play
+    * */
     private boolean checkPlayServices() {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
         int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
@@ -774,7 +882,7 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
             if (apiAvailability.isUserResolvableError(resultCode)) {
                 apiAvailability.getErrorDialog(this, resultCode, 9000).show();
             } else {
-                Log.e("Error", "This device is not supported.");
+                Log.e("Error", "Este dispositivo no soporta Google Play Services");
                 finish();
             }
             return false;
@@ -783,21 +891,25 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
     }
 
     /*
-* Al oprimir el boton de atras sale de la aplicación
-* */
+    * Al oprimir el boton de atras sale de la aplicación
+    * */
     @SuppressLint("NewApi") @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if(player != null){
+                player.stop();
+            }
             Gallery_ACtivity.this.finishAffinity();
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
+
     /*
     * Descarga el video
     * */
-    class  DowloadVideo extends AsyncTask{
+     class  DowloadVideo extends AsyncTask{
 
         Producto producto;
         boolean IsTodo;
@@ -817,7 +929,11 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
             request.setTitle("Descargando...");
             request.allowScanningByMediaScanner();
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
-            request.setDestinationInExternalPublicDir(Constantes.PathLocal, prd.getNombreProducto() + ".mp4");
+            File dir =Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) +Constantes.local);
+            if (dir.exists() == false) {
+                dir.mkdirs();
+            }
+            request.setDestinationInExternalPublicDir(Constantes.PathLocal(getBaseContext()), File.separator + Constantes.local + File.separator + prd.getNombreProducto() + ".mp4");
 
             final DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManagerId = manager.enqueue(request);
@@ -838,7 +954,6 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
                 final double dl_progress = (int) ((bytes_downloaded * 100l) / bytes_total);
                 final boolean finalDownloading = downloading;
                 runOnUiThread(new Runnable() {
-
                     @Override
                     public void run() {
                         lbdescargando.setTypeface(custom_font);
@@ -847,7 +962,8 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
                         lbdescargando.setText("Descargando: " + prd.getNombrePersonaje());
                         mProgressBar.setProgress((int) dl_progress);
                         if (!finalDownloading) {
-                            prd.setVideoLocal(Constantes.PathLocal + prd.getNombreProducto() + ".mp4");
+                            prd.setVideoLocal(Constantes.PathLocal(getBaseContext()) + Constantes.local + prd.getNombreProducto() + ".mp4");
+                            prd.setPurchased(true);
                             DownloadInProgress = false;
                             Gallery_ACtivity.mis_productos.set(prd.getPosition(), prd);
                             Recursos.SavePreferences(Gallery_ACtivity.mis_productos, getBaseContext());
@@ -865,21 +981,23 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
 
         @Override
         protected Object doInBackground(Object[] params) {
-            if(IsTodo){
-                for (Producto item:mis_productos) {
-                    if(item.getPosition() != 0 && item.getPosition() != 20)
+            Object data= "0";
+            if (IsTodo) {
+                for (Producto item : mis_productos) {
+                    if (item.getPosition() != 0 && item.getPosition() != 20)
                         DescargarVideo(item);
                 }
-            }
-            else
-            {
+            } else {
                 DescargarVideo(this.producto);
             }
-            return null;
+            return data;
         }
 
         @Override
         protected void onPostExecute(Object params) {
+            if(params.toString().equals("-2")){
+                Toast.makeText(getBaseContext(),"La aplicación no tiene permisos para descargar",Toast.LENGTH_SHORT);
+            }
             mProgressBar.setVisibility(View.GONE);
             lbdescargando.setVisibility(View.GONE);
         }

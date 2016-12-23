@@ -57,7 +57,7 @@ package cancionesinfantiles.toycantando.util;
  * Provides convenience methods for in-app billing. You can create one instance of this
  * class for your application and use it to process in-app billing operations.
  * It provides synchronous (blocking) and asynchronous (non-blocking) methods for
- * many common in-app billing operations, as well as automatic signature
+ * many cancionesinfantiles.toycantando.common in-app billing operations, as well as automatic signature
  * verification.
  *
  * After instantiating, you must perform setup in order to start using the object.

@@ -39,4 +39,29 @@ public class Session {
             }
         }
     }
+
+    /*
+    * Guarda las configuraciones de sonido
+    * */
+    public static void ValidateSonido(Context pcontext,boolean IsMute){
+        SharedPreferences prefs =   pcontext.getSharedPreferences(Constantes.Preferences,Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        prefsEditor.putBoolean("IsMute", IsMute);
+        prefsEditor.commit();
+    }
+
+
+    /*
+    * Valida si la app esta en silencio o si tiene sonido
+    * Si retorna verdadero la aplicacion estara en silencio sino la aplicacion tiene sonido
+    * */
+    public static boolean IsMute (Context pcontext){
+        SharedPreferences prefs =   pcontext.getSharedPreferences(Constantes.Preferences,Context.MODE_PRIVATE);
+        if(prefs != null && prefs.contains("IsMute")){
+            return prefs.getBoolean("IsMute",false);
+        }
+        else{
+            return false;
+        }
+    }
 }

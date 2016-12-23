@@ -1,5 +1,11 @@
 package Negocio;
 
+import android.content.Context;
+import android.os.Environment;
+
+import java.io.File;
+import java.net.ConnectException;
+
 /**
  * Created by ogil on 11/09/2016.
  */
@@ -8,7 +14,12 @@ public class Constantes {
     public  static  double subirNormal = -160f;
     public  static  String Preferences ="TOYCANTANDOPREFERENCES";
     public  static  String keyCompras="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArp98w/y+a/mM6HAeIuQcQkJEhIumnP/hQ2+c4IijZSyt2eFij004jzTRmx2lIYL7F7CpvYG7PQY739uc78hVzP6gYg0MeXULGygGozuduQwoz6J2HKaEigwDndERDa1ojY1AyB+QKojA+/DHvAxgGLrng7CeuKc8UNAYrhjKV1OOz2vicYT9xdoUxFQsB+hIjPe+oLs/64n2EeQFRfxhvN9TKTlOUbTGQPHPHyGFaNx9RerqYQW3SqYgJAC2rpnBespIb0Qg1KH3XiZ9Y/yWCxv/OGSN+UMVz5f2BO+UY6HqEAgnqayDgAa3nyGLSI3CDTU3P+jNfnDIMm0MvxDoswIDAQAB";
-    public  static  String PathLocal="/mnt/sdcard/cancionesinfantiles/databases/";
+    public  static  String local="/cancionesinfantiles/";
+
+    public  static String PathLocal(Context pcontext){
+        return pcontext.getExternalFilesDir(null).getAbsolutePath();
+    }
+
     /*
     * IDs de los productos para las compras por Google Play
     * */

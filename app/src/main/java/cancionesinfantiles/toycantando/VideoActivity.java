@@ -27,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -37,10 +38,10 @@ import Entidades.Producto;
 import Negocio.Constantes;
 import Negocio.Recursos;
 
-public class VideoActivity extends AppCompatActivity implements View.OnClickListener {
+public class VideoActivity extends AppCompatActivity{
 
     private VideoView videoView;
-    private View layout_video;
+    private RelativeLayout layout_video;
     private Button btnplay;
     private Button btnadelantar;
     private Button btnatrasar;
@@ -62,7 +63,8 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_video);
         ///Oculta la barra de notificaciones del telefono
         getSupportActionBar().hide();
-        layout_video = (View) findViewById(R.id.layout_video);
+        layout_video =(RelativeLayout) findViewById(R.id.layout_video);
+        controlVideo= (LinearLayout) findViewById(R.id.controlVideo);
         layout_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,13 +83,14 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
         btnplay = (Button) findViewById(R.id.btnplay);
         btnadelantar = (Button) findViewById(R.id.btnadelantar);
         btnatrasar = (Button) findViewById(R.id.btnatrasar);
-        controlVideo= (LinearLayout) findViewById(R.id.controlVideo);
+
         btnSalir=(Button) findViewById(R.id.btnSalir);
         btnSalir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goInicio= new Intent(getBaseContext(),Gallery_ACtivity.class);
-                startActivity(goInicio);
+                finish();
+                //Intent goInicio= new Intent(getBaseContext(),Gallery_ACtivity.class);
+                //startActivity(goInicio);
             }
         });
         controlVideo.setOnClickListener(new View.OnClickListener() {
@@ -168,40 +171,11 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
             videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    Intent activity = new Intent(getBaseContext(),Gallery_ACtivity.class);
-                    startActivity(activity);
+                     finish();
+                    //Intent activity = new Intent(getBaseContext(),Gallery_ACtivity.class);
+                    //startActivity(activity);
                 }
             });
-            /*videoView.setOnTouchListener(new View.OnTouchListener()
-            {
-                @Override
-                public boolean onTouch(View v, MotionEvent motionEvent)
-                {
-                    controlVideo.animate()
-                            .alpha(3.0f)
-                            .scaleX(1.0f)
-                            .scaleY(1.0f)
-                            .setDuration(100)
-                            .setListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationEnd(Animator animation) {
-                                    super.onAnimationEnd(animation);
-                                    controlVideo.setVisibility(View.VISIBLE);
-                                    controlVideo.animate()
-                                            .alpha(0.0f)
-                                            .setDuration(4000)
-                                            .setListener(new AnimatorListenerAdapter() {
-                                                @Override
-                                                public void onAnimationEnd(Animator animation) {
-                                                    super.onAnimationEnd(animation);
-                                                    controlVideo.setVisibility(View.GONE);
-                                                }
-                                            });
-                                }
-                            });
-                    return  false;
-                }
-            });*/
             //String Path = "http://www.html5videoplayer.net/videos/toystory.mp4";
             //String Path = "https://s3.amazonaws.com/descargastoycantando/A_MI_BURRO.mp4";
             //Uri url = Uri.parse(this.PathVideo);
@@ -210,16 +184,17 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
                 videoView.setVideoPath(path);
             }
             else{
-                File root = Environment.getExternalStorageDirectory();
-                File dir = new File(root.getAbsolutePath() + Constantes.PathLocal);
+                File dir = Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) +Constantes.local);
                 if (dir.exists() == false) {
                     dir.mkdirs();
                 }
-                dir = new File(root.getAbsolutePath() + Constantes.PathLocal + producto_reproductor.getNombreProducto() +".mp4");
+                dir = Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) +Constantes.local +  producto_reproductor.getNombreProducto() + ".mp4");
                 ///Si existe en el dispositivo el video lo reproduce
                 if(dir.exists()){
-                    producto_reproductor.setVideoLocal(Constantes.PathLocal + producto_reproductor.getNombreProducto() +".mp4");
-                    videoView.setVideoPath(root.getAbsolutePath() + producto_reproductor.getVideoLocal());
+                    producto_reproductor.setVideoLocal(Constantes.PathLocal(getBaseContext()) + Constantes.local + producto_reproductor.getNombreProducto() +".mp4");
+                    File uri = Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) +Constantes.local + producto_reproductor.getNombreProducto() + ".mp4");
+
+                    videoView.setVideoPath(uri.getAbsolutePath());
                 }
                 else{
                     videoView.setVideoPath(producto_reproductor.getVideoServer());
@@ -227,21 +202,6 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
             }
 
             //videoView.start();
-            playVideo();
-
-            ///Animacion para quitar el control de video
-            /*controlVideo.animate()
-                    .alpha(0.0f)
-                    .scaleX(1.0f)
-                    .scaleY(1.0f)
-                    .setDuration(4000)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            controlVideo.setVisibility(View.GONE);
-                        }
-                    });*/
             handler = new Handler();
             handler.postDelayed(csRunnable, 5000);
             /*
@@ -250,8 +210,7 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
             videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
                 @Override
                 public boolean onError(MediaPlayer mp, int what, int extra) {
-                    File root = Environment.getExternalStorageDirectory();
-                    File dir = new File(root.getAbsolutePath() + Constantes.PathLocal + producto_reproductor.getNombreProducto() +".mp4");
+                    File dir = Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) +Constantes.local +  producto_reproductor.getNombreProducto() +".mp4");
                     if (dir.exists()) {
                         dir.delete();
                     }
@@ -273,6 +232,7 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
             int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             decorView.setSystemUiVisibility(uiOptions);
         }
+        playVideo();
     }
 
     Runnable csRunnable =new Runnable()
@@ -374,10 +334,5 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
             btnplay.setBackgroundResource(R.drawable.play);
             videoView.pause();
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

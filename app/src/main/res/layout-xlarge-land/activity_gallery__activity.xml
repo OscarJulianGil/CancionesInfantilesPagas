@@ -48,6 +48,16 @@
         android:layout_marginLeft="@dimen/logo_layout_marginLeft"
         android:foregroundGravity="left"
         android:background="@drawable/logo"/>
+
+    <ImageButton
+        android:id="@+id/btn_jugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_jugar"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="@dimen/btnconfiguracion_layout_marginTop"
+        android:layout_toLeftOf="@+id/btnsonido"/>
+
     <Button
         android:id="@+id/btnsonido"
         android:layout_marginTop="@dimen/btnconfiguracion_layout_marginTop"
