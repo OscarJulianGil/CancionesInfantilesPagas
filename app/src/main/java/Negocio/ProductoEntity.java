@@ -19,7 +19,7 @@ public class ProductoEntity {
     public  ArrayList<Producto> DoMisProductos(Context pContext){
         ArrayList<Producto> misproductos= new ArrayList<>();
         Producto prd = new Producto("Pimpon",R.drawable.pimpon,0,
-                 "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/1-pin-pon.mp4",
+                 "http://www.toycantando.club/apps/Canciones%20Infantiles%202/1-pin-pon.mp4",
                  "",
                  true,
                  Constantes.pimponKey
@@ -27,7 +27,7 @@ public class ProductoEntity {
                  ,"Pin Pon");
         misproductos.add(prd);
         prd = new Producto("Pinocho",R.drawable.pinocho,1,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/2-Pinocho.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/2-Pinocho.mp4",
                 "",
                 false,
                 Constantes.pinochoKey
@@ -35,7 +35,7 @@ public class ProductoEntity {
                 ,"Pinocho");
         misproductos.add(prd);
         prd = new Producto("mi_carita",R.drawable.mi_carita,2,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/3-mi-carita.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/3-mi-carita.mp4",
                 "",
                 false,
                 Constantes.micaritaKey
@@ -43,7 +43,7 @@ public class ProductoEntity {
         ,"Mi Carita");
         misproductos.add(prd);
         prd = new Producto("barquito",R.drawable.barquito,3,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/4-barquito-chiquitico.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/4-barquito-chiquitico.mp4",
                 "",
                 false,
                 Constantes.barquitoKey
@@ -59,7 +59,7 @@ public class ProductoEntity {
                 "Sol Solecito");
         misproductos.add(prd);*/
         prd = new Producto("patico_patico",R.drawable.patico_patico,4,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/6-patico-patico.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/6-patico-patico.mp4",
                 "",
                 false,
                 Constantes.paticoKey
@@ -67,7 +67,7 @@ public class ProductoEntity {
         ,"Patico, Patico");
         misproductos.add(prd);
         prd = new Producto("tres_elefantes",R.drawable.patico_patico,5,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/7-tres-elefantes.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/7-tres-elefantes.mp4",
                 "",
                 false,
                 Constantes.treselefantesKey
@@ -75,7 +75,7 @@ public class ProductoEntity {
                 "Tres Elefantes");
         misproductos.add(prd);
         prd = new Producto("a_mi_burro",R.drawable.a_mi_burro,6,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/8-a-mi-burro.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/8-a-mi-burro.mp4",
                 "",
                 false,
                 Constantes.amiburroKey
@@ -91,7 +91,7 @@ public class ProductoEntity {
                 "Los Pollitos Dicen");
         misproductos.add(prd);*/
         prd = new Producto("arroz_con_leche",R.drawable.arroz_con_leche,7,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/10-arroz-con-leche.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/10-arroz-con-leche.mp4",
                 "",
                 false,
                 Constantes.arrozconleche
@@ -99,7 +99,7 @@ public class ProductoEntity {
                 "Arroz Con Leche");
         misproductos.add(prd);
         prd = new Producto("a_la_vibora_de_la_mar",R.drawable.a_la_vibora_de_la_mar,8,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/11-a-la-vibora-de-la-mar.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/11-a-la-vibora-de-la-mar.mp4",
                 "",
                 false,
                 Constantes.alaviboradelamarKey
@@ -107,7 +107,7 @@ public class ProductoEntity {
                 "A La Víbora De La Mar");
         misproductos.add(prd);
         prd = new Producto("cucu",R.drawable.cucu,9,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/12-cu-cu.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/12-cu-cu.mp4",
                 "",
                 false,
                 Constantes.cucuKey
@@ -123,7 +123,7 @@ public class ProductoEntity {
                 "La Vaca Lechera");
         misproductos.add(prd);*/
         prd = new Producto("debajo_de_un_boton",R.drawable.debajo_de_un_boton,10,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/14-debajo-de-un-boton.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/14-debajo-de-un-boton.mp4",
                 "",
                 false,
                 Constantes.debajodeunbotonKey
@@ -131,7 +131,7 @@ public class ProductoEntity {
                 "Debajo De Un Botón");
         misproductos.add(prd);
         prd = new Producto("juguemos_en_el_bosque",R.drawable.juguemos_en_el_bosque,11,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/15-juguemos-en-el-bosque.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/15-juguemos-en-el-bosque.mp4",
                 "",
                 false,
                 Constantes.juguemosenelbosqueKey
@@ -139,7 +139,7 @@ public class ProductoEntity {
                 "Juguemos En El Bosque");
         misproductos.add(prd);
         prd = new Producto("la_pajara_pinta",R.drawable.la_pajara_pinta,12,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/16-la-pajara-pinta.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/16-la-pajara-pinta.mp4",
                 "",
                 false,
                 Constantes.lapajarapintaKey
@@ -147,7 +147,7 @@ public class ProductoEntity {
                 "La Pájara Pinta");
         misproductos.add(prd);
         prd = new Producto("cuando_tengas_muchas_ganas",R.drawable.cuando_tengas_muchas_ganas,13,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/18-cuando-tengas-muchas-ganas.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/18-cuando-tengas-muchas-ganas.mp4",
                 "",
                 false,
                 Constantes.cuandotengasmuchasganasKey
@@ -155,7 +155,7 @@ public class ProductoEntity {
                 "Cuando Tengas Muchas Ganas");
         misproductos.add(prd);
         prd = new Producto("el_patio_de_mi_casa",R.drawable.el_patio_de_mi_casa,14,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/17-el-patio-de-mi-casa.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/17-el-patio-de-mi-casa.mp4",
                 "",
                 false,
                 Constantes.elpatiodemicasaKey
@@ -163,7 +163,7 @@ public class ProductoEntity {
                 "El Patio De Mi Casa");
         misproductos.add(prd);
         prd = new Producto("la_muneca_vestida_de_azul",R.drawable.la_muneca_vestida_de_azul,15,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/19-la-muneca-vestida-de-azul.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/19-la-muneca-vestida-de-azul.mp4",
                 "",
                 false,
                 Constantes.lamunecavestidadeazul
@@ -171,7 +171,7 @@ public class ProductoEntity {
                 "La Muñeca Vestida De Azul");
         misproductos.add(prd);
         prd = new Producto("este_dedito",R.drawable.este_dedito,16,
-                "http://descargastoycantando.s3.amazonaws.com/apps/cancionesinfantiles/20-este-dedito.mp4",
+                "http://www.toycantando.club/apps/Canciones%20Infantiles%202/20-este-dedito.mp4",
                 "",
                 false,
                 Constantes.estededitoKey

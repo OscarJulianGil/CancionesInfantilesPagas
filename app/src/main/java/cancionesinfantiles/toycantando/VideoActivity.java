@@ -32,6 +32,10 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.io.File;
 
 import Entidades.Producto;
@@ -55,6 +59,8 @@ public class VideoActivity extends AppCompatActivity{
     public static  int Position;
     Handler handler;
     private boolean flagControl = false;
+
+    public static InterstitialAd interstitial;
 
 
     @Override
@@ -80,6 +86,21 @@ public class VideoActivity extends AppCompatActivity{
                 }
             }
         });
+
+        ///Anuncio antes del video
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+        // Prepare the Interstitial Ad
+        interstitial = new InterstitialAd(VideoActivity.this);
+        // Insert the Ad Unit ID
+        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
+        interstitial.loadAd(adRequest1);
+        // Prepare an Interstitial Ad Listener
+        interstitial.setAdListener(new AdListener() {
+            public void onAdClosed() {
+                Intent goReproductor= new Intent(getBaseContext(),Gallery_ACtivity.class);
+                startActivity(goReproductor);
+        }});
+
         btnplay = (Button) findViewById(R.id.btnplay);
         btnadelantar = (Button) findViewById(R.id.btnadelantar);
         btnatrasar = (Button) findViewById(R.id.btnatrasar);
@@ -171,7 +192,9 @@ public class VideoActivity extends AppCompatActivity{
             videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                     finish();
+                    if(producto_reproductor.getPosition() == 0)
+                        displayInterstitial(getBaseContext());
+                    finish();
                     //Intent activity = new Intent(getBaseContext(),Gallery_ACtivity.class);
                     //startActivity(activity);
                 }
@@ -234,6 +257,21 @@ public class VideoActivity extends AppCompatActivity{
         }
         playVideo();
     }
+
+    /*
+     * Muestra el anuncio
+     * */
+    public void displayInterstitial(Context ctx) {
+        // If Ads are loaded, show Interstitial else show nothing.
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+        }
+        else{
+            Intent activity = new Intent(ctx,Gallery_ACtivity.class);
+            startActivity(activity);
+        }
+    }
+
 
     Runnable csRunnable =new Runnable()
     {

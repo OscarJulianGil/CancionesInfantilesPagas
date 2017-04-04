@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.VideoView;
 
@@ -17,6 +18,10 @@ import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
+import com.onesignal.OSNotification;
+import com.onesignal.OneSignal;
+
+import org.json.JSONObject;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -35,6 +40,9 @@ public class Login_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide(); //Oculta la barra del titulo en la actividad
+        OneSignal.startInit(this)
+                .setNotificationOpenedHandler(new ExampleNotificationOpenedHandler())
+                .init();
 
         ///Oculta los controles laterales de la pantalla
         if(Build.VERSION.SDK_INT < 19){
@@ -58,6 +66,11 @@ public class Login_Activity extends AppCompatActivity {
             }
         });
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        addOneSignalTag();
+    }
+
+    private void addOneSignalTag(){
+        OneSignal.sendTag("app","canciones_infantiles_2");
     }
 
     @Override
@@ -93,5 +106,6 @@ public class Login_Activity extends AppCompatActivity {
             videoView.pause();
         }
     }
+
 
 }

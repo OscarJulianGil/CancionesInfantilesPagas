@@ -8,8 +8,11 @@ android {
         applicationId "cancionesinfantiles.toycantando"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 26
+        versionCode 28
         versionName "1.7"
+        manifestPlaceholders = [onesignal_app_id: "d2479209-f130-47a9-9625-674cf08a427b",
+                                // Project number pulled from dashboard, local value is ignored.
+                                onesignal_google_project_number: "318529995571"]
     }
     buildTypes {
         release {
@@ -36,6 +39,14 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:9.0.2'
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.google.android.gms:play-services-ads:9.0.2'
+
+    compile 'com.onesignal:OneSignal:3.+@aar'
+
+    // Required for OneSignal, even if you have added FCM.
+    compile 'com.google.android.gms:play-services-gcm:9.0.2'
+
+    // Required for geotagging
+    compile "com.google.android.gms:play-services-location:9.0.2"
 }
 
 apply plugin: 'com.google.gms.google-services'

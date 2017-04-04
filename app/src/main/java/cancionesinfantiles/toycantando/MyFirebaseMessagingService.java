@@ -22,11 +22,11 @@ import java.util.Map;
         // If the application is in the foreground handle both data and notification messages here.
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
-        Log.d("MENSAJE", "From: " + remoteMessage.getFrom());
+        //Log.d("MENSAJE", "From: " + remoteMessage.getFrom());
         //Log.d("MENSAJE", "Notification Message Body: " + remoteMessage.getNotification().getBody());
-        Map<String,String> info  = remoteMessage.getData();
-        String message = info.get("body");
-        sendNotification(info.get("body"));
+        //Map<String,String> info  = remoteMessage.getData();
+        //String message = info.get("body");
+        //sendNotification(info.get("body"));
     }
 
     private void sendNotification(String message) {

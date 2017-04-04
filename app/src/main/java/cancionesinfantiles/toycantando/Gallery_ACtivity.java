@@ -41,6 +41,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -105,6 +108,9 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
     ///Control del sonido de la app
     public static MediaPlayer player;
 
+    public static InterstitialAd interstitial;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +137,20 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
             mis_productos= new ProductoEntity().DoMisProductos(this);
             Recursos.SavePreferences(mis_productos,this);
         }
+
+        ///Anuncio antes del video
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+        // Prepare the Interstitial Ad
+        interstitial = new InterstitialAd(Gallery_ACtivity.this);
+        // Insert the Ad Unit ID
+        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
+        interstitial.loadAd(adRequest1);
+        // Prepare an Interstitial Ad Listener
+        interstitial.setAdListener(new AdListener() {
+            public void onAdClosed() {
+                Intent goReproductor= new Intent(getBaseContext(),VideoActivity.class);
+                startActivity(goReproductor);
+        }});
 
         ///Inicializa el servicio de compras con Google Play
         mHelper = new IabHelper(this, Constantes.keyCompras);
@@ -175,6 +195,20 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
         * */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ValidatePermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+    }
+
+    /*
+     * Muestra el anuncio
+     * */
+    public static void displayInterstitial(Context ctx) {
+        // If Ads are loaded, show Interstitial else show nothing.
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+        }
+        else{
+            Intent activity = new Intent(ctx,VideoActivity.class);
+            ctx.startActivity(activity);
         }
     }
 
@@ -719,8 +753,9 @@ public class Gallery_ACtivity extends AppCompatActivity implements  View.OnClick
                 }
                 else{
                     VideoActivity.Position = position;
-                    Intent initCompra = new Intent(getBaseContext(), VideoActivity.class);
-                    startActivity(initCompra);
+                    displayInterstitial(this);
+                    //Intent initCompra = new Intent(getBaseContext(), VideoActivity.class);
+                    //startActivity(initCompra);
                 }
             } else {
                 Intent initCompra = new Intent(getBaseContext(), Compras_Activity.class);

@@ -13,5 +13,5 @@
     <!--<string name="admob_banner_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_interstitial_id">ca-app-pub-3940256099942544/4411468910</string>-->
     <string name="admob_banner_id">0</string>
-    <string name="admob_interstitial_id">0</string>
+    <string name="admob_interstitial_id">ca-app-pub-6113913621681882/9424003654</string>
 </resources>
