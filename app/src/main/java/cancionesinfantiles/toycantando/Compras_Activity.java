@@ -118,7 +118,7 @@ public class Compras_Activity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
         else {
-            Log.d("compras", "onActivityResult handled by IABUtil.");
+            //Log.d("compras", "onActivityResult handled by IABUtil.");
         }
     }
 
@@ -221,9 +221,18 @@ public class Compras_Activity extends AppCompatActivity {
             btncajoncompraunidad = (Button) rootView.findViewById(R.id.btncajoncompraunidad);
             btncajoncompraunidad.setTypeface(custom_font);
             lbValorTodaColeccion =(TextView) rootView.findViewById(R.id.lbValorTodaColeccion);
-            Producto prd1 = Gallery_ACtivity.SearchProducto(20);
-            lbValorTodaColeccion.setText(prd1.getPrecio());
-            lbValorTodaColeccion.setTypeface(custom_font);
+            Producto TodaCollecion =null;
+            try {
+                TodaCollecion = Gallery_ACtivity.SearchProducto(20);
+                if(TodaCollecion != null) {
+                    lbValorTodaColeccion.setText(TodaCollecion.getPrecio());
+                    lbValorTodaColeccion.setTypeface(custom_font);
+                }
+            }
+            catch (Exception ex){}
+
+
+
             btncerrarpantallacompra.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -253,329 +262,375 @@ public class Compras_Activity extends AppCompatActivity {
             lbNombrePersonaje.setTypeface(custom_font);
             ///Inicio para armar los diferentes Fragment
             if(getArguments().getInt(ARG_SECTION_NUMBER)  == 1) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.pimpon));
-                Producto prd = Gallery_ACtivity.SearchProducto(0);
-                productoToComprar = prd;
-                btncajoncompraunidad.setText(prd.getPrecio());
-                lbNombrePersonaje.setText("Pin Pon");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.pimpon));
+                    Producto prd = Gallery_ACtivity.SearchProducto(0);
+                    productoToComprar = prd;
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    lbNombrePersonaje.setText("Pin Pon");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    }
                 }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
-                }
+                catch (Exception e){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 2) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.pinocho));
-                Producto prd = Gallery_ACtivity.SearchProducto(1);
-                productoToComprar = prd;
-                btncajoncompraunidad.setText(prd.getPrecio());
-                lbNombrePersonaje.setText("Pinocho");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.mi_carita));
+                    Producto prd = Gallery_ACtivity.SearchProducto(1);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Mi Carita");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 3) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.mi_carita));
-                Producto prd = Gallery_ACtivity.SearchProducto(2);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Mi Carita");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.ronda_conejos));
+                    Producto prd = Gallery_ACtivity.SearchProducto(2);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Ronda de los conejos");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 4) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.barquito));
-                Producto prd = Gallery_ACtivity.SearchProducto(3);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("El Barquito Chiquitito");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.tio_mario));
+                    Producto prd = Gallery_ACtivity.SearchProducto(3);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Tio mario");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception ex){}
             }
-            /*else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 5) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.sol_solecito));
-                Producto prd = Gallery_ACtivity.SearchProducto(4);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Sol Solecito");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
-
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
-
-                }
-            }*/
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 5) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.patico_patico));
-                Producto prd = Gallery_ACtivity.SearchProducto(4);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Patico, Patico");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.pinocho));
+                    Producto prd = Gallery_ACtivity.SearchProducto(4);
+                    productoToComprar = prd;
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    lbNombrePersonaje.setText("Pinocho");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 6) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.tres_elefantes));
-                Producto prd = Gallery_ACtivity.SearchProducto(5);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Tres Elefantes");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.cuando_tengas_muchas_ganas));
+                    Producto prd = Gallery_ACtivity.SearchProducto(5);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Cuando Tengas Muchas Ganas");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception e){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 7) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.a_mi_burro));
-                Producto prd = Gallery_ACtivity.SearchProducto(6);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("A Mi Burro");
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.barquito));
+                    Producto prd = Gallery_ACtivity.SearchProducto(6);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("El Barquito Chiquitito");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
+
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
+
+                    }
+                }
+                catch (Exception ex){}
             }
-            /*else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 9) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.los_pollitos));
-                Producto prd = Gallery_ACtivity.SearchProducto(8);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Los Pollitos Dicen");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
-
-                }
-            }*/
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 8) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.arroz_con_leche));
-                Producto prd = Gallery_ACtivity.SearchProducto(7);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Arroz Con Leche");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.patico_patico));
+                    Producto prd = Gallery_ACtivity.SearchProducto(7);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Patico, Patico");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 9) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.a_la_vibora_de_la_mar));
-                Producto prd = Gallery_ACtivity.SearchProducto(8);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("A La Víbora De La Mar");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.tres_elefantes));
+                    Producto prd = Gallery_ACtivity.SearchProducto(8);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Tres Elefantes");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    }
                 }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
-
-                }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 10) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.cucu));
-                Producto prd = Gallery_ACtivity.SearchProducto(9);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Cucú");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.a_mi_burro));
+                    Producto prd = Gallery_ACtivity.SearchProducto(9);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("A Mi Burro");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    }
                 }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
-                }
+                catch (Exception e){}
             }
-            /*else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 13) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.vaca_lechera));
-                Producto prd = Gallery_ACtivity.SearchProducto(12);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("La Vaca Lechera");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
-
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
-
-                }
-            }*/
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 11) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.debajo_de_un_boton));
-                Producto prd = Gallery_ACtivity.SearchProducto(10);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Debajo De Un Botón");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.arroz_con_leche));
+                    Producto prd = Gallery_ACtivity.SearchProducto(10);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Arroz Con Leche");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 12) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.juguemos_en_el_bosque));
-                Producto prd = Gallery_ACtivity.SearchProducto(11);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Juguemos En El Bosque");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.auto_papa));
+                    Producto prd = Gallery_ACtivity.SearchProducto(11);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("El auto de papá");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 13) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.la_pajara_pinta));
-                Producto prd = Gallery_ACtivity.SearchProducto(12);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("La Pájara Pinta");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.a_la_vibora_de_la_mar));
+                    Producto prd = Gallery_ACtivity.SearchProducto(12);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("A La Víbora De La Mar");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 14) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.cuando_tengas_muchas_ganas));
-                Producto prd = Gallery_ACtivity.SearchProducto(13);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Cuando Tengas Muchas Ganas");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
-
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.cucu));
+                    Producto prd = Gallery_ACtivity.SearchProducto(13);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Cucú");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    }
                 }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
-
-                }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 15) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.el_patio_de_mi_casa));
-                Producto prd = Gallery_ACtivity.SearchProducto(14);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("El Patio De Mi Casa");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.debajo_de_un_boton));
+                    Producto prd = Gallery_ACtivity.SearchProducto(14);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Debajo De Un Botón");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
+
+                    }
                 }
+                catch (Exception ex){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 16) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.la_muneca_vestida_de_azul));
-                Producto prd = Gallery_ACtivity.SearchProducto(15);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("La Muñeca Vestida De Azul");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.juguemos_en_el_bosque));
+                    Producto prd = Gallery_ACtivity.SearchProducto(15);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Juguemos En El Bosque");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception e){}
             }
             else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 17) {
-                personaje.setImageDrawable(getResources().getDrawable(R.drawable.este_dedito));
-                Producto prd = Gallery_ACtivity.SearchProducto(16);
-                btncajoncompraunidad.setText(prd.getPrecio());
-                productoToComprar = prd;
-                lbNombrePersonaje.setText("Este Dedito Compró Un Huevito");
-                if(prd.isPurchased()){
-                    btnVerVideo.setVisibility(View.VISIBLE);
-                    btnCompraUnitaria.setVisibility(View.GONE);
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.la_pajara_pinta));
+                    Producto prd = Gallery_ACtivity.SearchProducto(16);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("La Pájara Pinta");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
 
-                }
-                else{
-                    btnVerVideo.setVisibility(View.GONE);
-                    btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
 
+                    }
                 }
+                catch (Exception e){}
+            }
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 18) {
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.el_patio_de_mi_casa));
+                    Producto prd = Gallery_ACtivity.SearchProducto(17);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("El Patio De Mi Casa");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
+
+                    }
+                }
+                catch (Exception ex){}
+            }
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 19) {
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.la_muneca_vestida_de_azul));
+                    Producto prd = Gallery_ACtivity.SearchProducto(18);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("La Muñeca Vestida De Azul");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
+
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    }
+                }
+                catch (Exception ex){}
+            }
+            else if(getArguments().getInt(ARG_SECTION_NUMBER)  == 20) {
+                try {
+                    personaje.setImageDrawable(getResources().getDrawable(R.drawable.este_dedito));
+                    Producto prd = Gallery_ACtivity.SearchProducto(19);
+                    btncajoncompraunidad.setText(prd.getPrecio());
+                    productoToComprar = prd;
+                    lbNombrePersonaje.setText("Este Dedito Compró Un Huevito");
+                    if (prd.isPurchased()) {
+                        btnVerVideo.setVisibility(View.VISIBLE);
+                        btnCompraUnitaria.setVisibility(View.GONE);
+
+                    } else {
+                        btnVerVideo.setVisibility(View.GONE);
+                        btnCompraUnitaria.setVisibility(View.VISIBLE);
+                    }
+                }
+                catch (Exception e){}
             }
             return rootView;
         }
@@ -596,6 +651,7 @@ public class Compras_Activity extends AppCompatActivity {
             public void onIabPurchaseFinished(IabResult result, Purchase purchase)
             {
                 if (result.isFailure()) {
+
                 }
                 else if (purchase.getSku().equals(productoToComprar.getIdGoogleCompra())) {
                     new Compras_Activity().GoGallery(productoToComprar,IsTodaColeccion);
@@ -642,7 +698,7 @@ public class Compras_Activity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 17;
+            return 20;
         }
 
         @Override
@@ -681,6 +737,12 @@ public class Compras_Activity extends AppCompatActivity {
                 case 15:
                     return "";
                 case 16:
+                    return "";
+                case 17:
+                    return "";
+                case 18:
+                    return "";
+                case 19:
                     return "";
             }
             return null;

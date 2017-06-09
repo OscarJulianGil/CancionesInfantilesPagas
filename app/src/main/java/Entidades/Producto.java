@@ -18,8 +18,9 @@ public class Producto implements Serializable {
     private String IdGoogleCompra;
     private String Precio;
     private String NombrePersonaje;
+    private boolean IsFree;
 
-    public Producto(String pNombreProducto,int pImagenProducto,int pPosition,String pVideoServer,String pVideoLocal,boolean pIsPurchased,String pIdGoogleCompra,String pPrecio,String pNombrePersonaje){
+    public Producto(String pNombreProducto,int pImagenProducto,int pPosition,String pVideoServer,String pVideoLocal,boolean pIsPurchased,String pIdGoogleCompra,String pPrecio,String pNombrePersonaje,boolean pIsFree){
         setNombreProducto(pNombreProducto);
         setImagenProducto(pImagenProducto);
         setPosition(pPosition);
@@ -29,6 +30,7 @@ public class Producto implements Serializable {
         setIdGoogleCompra(pIdGoogleCompra);
         setPrecio(pPrecio);
         setNombrePersonaje(pNombrePersonaje);
+        setFree(pIsFree);
     }
 
     public String getNombreProducto() {
@@ -101,5 +103,13 @@ public class Producto implements Serializable {
 
     public void setNombrePersonaje(String nombrePersonaje) {
         NombrePersonaje = nombrePersonaje;
+    }
+
+    public boolean isFree() {
+        return IsFree;
+    }
+
+    public void setFree(boolean free) {
+        IsFree = free;
     }
 }

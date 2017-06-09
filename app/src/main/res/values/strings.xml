@@ -13,5 +13,28 @@
     <!--<string name="admob_banner_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_interstitial_id">ca-app-pub-3940256099942544/4411468910</string>-->
     <string name="admob_banner_id">0</string>
-    <string name="admob_interstitial_id">ca-app-pub-6113913621681882/9424003654</string>
+    <string name="admob_interstitial_id">ca-app-pub-6113913621681882/2382295654</string>
+
+    <!--POP UP CALIFICACION TEXT-->
+
+    <string name="titulo_calificacion">Cuéntanos</string>
+    <string name="mensaje_calificacion">¿Que tanto te gustan nuestros videos?</string>
+
+    <string name="video_watched">3</string>
+    <string name="veces_visto_calificacion">2</string>
+
+    <!--POP UP INFORMATIVO-->
+
+    <string name="titulo_infomativo">Liberar Espacio</string>
+    <string name="mensaje_informativo">Debes liberar al menos 20 megas de espacio en tu dispositivo para poder descargar el video</string>
+    <string name="aceptar_btn_informativo">ACEPTAR</string>
+    <string name="title_activity_web_view_">webViewActivity_</string>
+    <string name="title_activity_web_view_bar"></string>
+
+    <!--POP UP TEXTS-->
+    <string name="aceptar">SI</string>
+    <string name="cancelar">NO</string>
+    <string name="titulo">OFERTA ESPECIAL</string>
+    <string name="mensaje">¿Deseas obtener 17 videos más offline, y quitar la publicidad de la app?</string>
+
 </resources>

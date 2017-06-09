@@ -20,22 +20,22 @@ public class GalleryImageAdapter extends BaseAdapter
 
     private Integer[] mImageIds = {
             R.drawable.pimpon,
-            R.drawable.pinocho,
             R.drawable.mi_carita,
+            R.drawable.ronda_conejos,
+            R.drawable.tio_mario,
+            R.drawable.pinocho,
+            R.drawable.cuando_tengas_muchas_ganas,
             R.drawable.barquito,
-            //R.drawable.sol_solecito,
             R.drawable.patico_patico,
             R.drawable.tres_elefantes,
             R.drawable.a_mi_burro,
-            //R.drawable.los_pollitos,
             R.drawable.arroz_con_leche,
+            R.drawable.auto_papa,
             R.drawable.a_la_vibora_de_la_mar,
             R.drawable.cucu,
-            //R.drawable.vaca_lechera,
             R.drawable.debajo_de_un_boton,
             R.drawable.juguemos_en_el_bosque,
             R.drawable.la_pajara_pinta,
-            R.drawable.cuando_tengas_muchas_ganas,
             R.drawable.el_patio_de_mi_casa,
             R.drawable.la_muneca_vestida_de_azul,
             R.drawable.este_dedito
@@ -43,7 +43,6 @@ public class GalleryImageAdapter extends BaseAdapter
 
     public GalleryImageAdapter(Context context)
     {
-
         mContext = context;
     }
 

@@ -58,6 +58,7 @@
         android:layout_marginTop="@dimen/btnconfiguracion_layout_marginTop"
         android:layout_toLeftOf="@+id/btnsonido"/>
 
+
     <Button
         android:id="@+id/btnsonido"
         android:layout_marginTop="@dimen/btnconfiguracion_layout_marginTop"

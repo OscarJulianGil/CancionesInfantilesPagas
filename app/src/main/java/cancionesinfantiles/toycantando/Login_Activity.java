@@ -18,10 +18,16 @@ import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
+import com.inmobi.sdk.InMobiSdk;
 import com.onesignal.OSNotification;
 import com.onesignal.OneSignal;
 
 import org.json.JSONObject;
+
+import io.branch.indexing.BranchUniversalObject;
+import io.branch.referral.Branch;
+import io.branch.referral.BranchError;
+import io.branch.referral.util.LinkProperties;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -43,7 +49,7 @@ public class Login_Activity extends AppCompatActivity {
         OneSignal.startInit(this)
                 .setNotificationOpenedHandler(new ExampleNotificationOpenedHandler())
                 .init();
-
+        InMobiSdk.init(Login_Activity.this, "530da009dec0484bbc6c0c30f525094d");
         ///Oculta los controles laterales de la pantalla
         if(Build.VERSION.SDK_INT < 19){
             View v = this.getWindow().getDecorView();
@@ -88,6 +94,27 @@ public class Login_Activity extends AppCompatActivity {
         if(videoView != null){
             videoView.start();
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Branch branch = Branch.getInstance();
+
+        branch.initSession(new Branch.BranchUniversalReferralInitListener() {
+            @Override
+            public void onInitFinished(BranchUniversalObject branchUniversalObject, LinkProperties linkProperties, BranchError error) {
+                if (error == null) {
+                    // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+                    // params will be empty if no data found
+                    // ... insert custom logic here ...
+                    Log.e("BRANCH OK","BRANCH OK");
+                    //Branch.getInstance(getApplicationContext()).userCompletedAction("signup");
+                } else {
+                    Log.e("BRANCH ERROR", error.getMessage());
+                }
+            }
+        }, this.getIntent().getData(), this);
     }
 
     /*Cuando la actividad queda en backgroud e invisible*/

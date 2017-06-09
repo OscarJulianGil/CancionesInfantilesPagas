@@ -41,6 +41,7 @@ import java.io.File;
 import Entidades.Producto;
 import Negocio.Constantes;
 import Negocio.Recursos;
+import Negocio.Session;
 
 public class VideoActivity extends AppCompatActivity{
 
@@ -53,13 +54,12 @@ public class VideoActivity extends AppCompatActivity{
     private LinearLayout controlVideo;
     private SeekBar mediacontroller_progress;
     private Handler mHandler = new Handler();
-    private int DurationVideo = 0;
     private int ActualVideoPosition=0;
     private Producto producto_reproductor;
     public static  int Position;
     Handler handler;
     private boolean flagControl = false;
-
+    private int DurationVideo = 0;
     public static InterstitialAd interstitial;
 
 
@@ -128,7 +128,20 @@ public class VideoActivity extends AppCompatActivity{
         /*
         * Valida que video va a mostrar
         * */
-        Producto prd =Gallery_ACtivity.SearchProducto(Position);
+        Producto prd = null;
+        try
+        {
+            prd = Gallery_ACtivity.SearchProducto(Position);
+        }
+        catch (Exception ex)
+        {
+            finish();
+        }
+        if(prd == null)
+        {
+            finish();
+            return;
+        }
         producto_reproductor =prd;
         mediacontroller_progress = (SeekBar) findViewById(R.id.mediacontroller_progress);
 
@@ -192,8 +205,12 @@ public class VideoActivity extends AppCompatActivity{
             videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    if(producto_reproductor.getPosition() == 0)
+                    Gallery_ACtivity.CallFromVideo=true;
+                    ///Para el video gratis, muestra publicidad, valida que el usuario no halla apagado quitar la publicidad
+                    if(producto_reproductor.isFree() && !Session.ShowAds(getBaseContext()))
                         displayInterstitial(getBaseContext());
+
+
                     finish();
                     //Intent activity = new Intent(getBaseContext(),Gallery_ACtivity.class);
                     //startActivity(activity);
@@ -202,9 +219,19 @@ public class VideoActivity extends AppCompatActivity{
             //String Path = "http://www.html5videoplayer.net/videos/toystory.mp4";
             //String Path = "https://s3.amazonaws.com/descargastoycantando/A_MI_BURRO.mp4";
             //Uri url = Uri.parse(this.PathVideo);
-            if(producto_reproductor.getPosition() == 0) {
-                String path = "android.resource://" + getPackageName() + "/" + R.raw.pim_pon;
-                videoView.setVideoPath(path);
+            if(producto_reproductor.isFree()) {
+                File dir = new File(this.getDir("filesdir", Context.MODE_PRIVATE) + producto_reproductor.getNombrePersonaje()+ ".mp4");
+                if(dir.exists())
+                {
+                    videoView.setVideoPath(dir.getAbsolutePath());
+                    handler = new Handler();
+                    handler.postDelayed(csRunnable, 5000);
+                    playVideo();
+                }
+                else {
+                    Toast.makeText(this,"No hay un video para mostrar",Toast.LENGTH_SHORT).show();
+                    this.finish();
+                }
             }
             else{
                 File dir = Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) +Constantes.local);
@@ -233,17 +260,27 @@ public class VideoActivity extends AppCompatActivity{
             videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
                 @Override
                 public boolean onError(MediaPlayer mp, int what, int extra) {
-                    File dir = Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) +Constantes.local +  producto_reproductor.getNombreProducto() +".mp4");
-                    if (dir.exists()) {
-                        dir.delete();
+                    if(producto_reproductor.getPosition() == 0)
+                    {
+                        File dir = new File(getDir("filesdir", Context.MODE_PRIVATE) + "video"+ ".mp4");
+                        if(dir.exists())
+                        {
+                            dir.delete();
+                        }
                     }
-                    Toast.makeText(getBaseContext(),"Tu video no se descargo correctamente,por favor  vuelve a ir al personaje",Toast.LENGTH_LONG).show();
+                    else {
+                        File dir = Environment.getExternalStoragePublicDirectory(Constantes.PathLocal(getBaseContext()) + Constantes.local + producto_reproductor.getNombreProducto() + ".mp4");
+                        if (dir.exists()) {
+                            dir.delete();
+                        }
+                        Toast.makeText(getBaseContext(), "Tu video no se descargo correctamente,por favor  vuelve a ir al personaje", Toast.LENGTH_LONG).show();
+                    }
                     return false;
                 }
             });
         }
         catch (Exception ex){
-            Log.e("Error",ex.getMessage());
+
         }
         ///Oculta los controles laterales de la pantalla
         if(Build.VERSION.SDK_INT < 19){
@@ -263,7 +300,7 @@ public class VideoActivity extends AppCompatActivity{
      * */
     public void displayInterstitial(Context ctx) {
         // If Ads are loaded, show Interstitial else show nothing.
-        if (interstitial.isLoaded()) {
+        if (interstitial.isLoaded() && !Session.ShowAds(this)) {
             interstitial.show();
         }
         else{
